@@ -57,9 +57,16 @@ Guard.prototype = {
         }))
       }
 
-      var sufficient = required.every(function (permission) {
+      // var sufficient = required.every(function (permission) {
+      //   return permissions.indexOf(permission) !== -1
+      // })
+
+      /*
+       * If one is matched then true
+       */
+      var sufficient = required.filter(function (permission) {
         return permissions.indexOf(permission) !== -1
-      })
+      }).length > 0
 
       return next(!sufficient ? PermissionError : null)
     }
